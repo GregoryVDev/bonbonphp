@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require_once("connect.php");
 
 // Étape 1 : Créer la requête SQL
@@ -26,12 +29,12 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 // Le echo "<pre>" permet de présenter le print_r plus proprement et le print_r sert à faire un test des valeurs $
 
 // echo "<pre>";
-// print_r($result);
+// print_r($result[0]);
 // print_r($result[1]['couleur']);
 // print_r($result[2]['box']);
 // echo "</pre>";
 
-
+// print_r($_SESSION);
 ?>
 
 
@@ -45,6 +48,22 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h1>Les bons bonbons</h1>
+
+    <!-- if (condition) : ?> -->
+    <!-- Code HTML à exécuter si la condition est vraie -->
+    <!-- endif; ?> -->
+
+    <!-- Cela vérifie si la variable de session 'delete_confirm' existe et si sa valeur est 'true'.
+        Si cette condition est vraie, alors le code entre php et endif; est exécuté: -->
+    <?php if (isset($_SESSION['delete_confirm']) && $_SESSION['delete_confirm'] === true) : ?>
+    <!-- Cela affiche un message indiquant que le bonbon avec l'identifiant stocké dans 'bonbon_name' a été supprimé. -->
+    <div><p>Le bonbon <?= $_SESSION['bonbon_name'] ?> a été supprimé </p></div>
+    <!-- Cela supprime la variable de session 'delete_confirm'. -->
+    <?php unset($_SESSION['delete_confirm']); ?>
+    <?php endif; ?>
+
+
+
     <table>
         <thead>
             <th>ID</th>

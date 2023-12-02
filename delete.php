@@ -23,7 +23,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     // Récupérer tous les résultats de la requête sous forme de tableau
     $result = $query->fetch();
     // echo "<pre>";
-    // print_r($result);
+    // print_r($result[1]);}
     // echo "</pre>";
 
     if(!$result){
@@ -39,10 +39,31 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     $query->execute();
 
     require_once('close.php');
-
     header('Location:index.php');
+
+    // Cette fonction démarre une nouvelle session ou restaure la session existante.
+    session_start();
+    // Cela crée une variable de session nommée 'fleuneuk' et lui assigne la valeur 'skeufleuk'.
+    $_SESSION['delete_confirm'] = true;
+    // Cette ligne stocke l'identifiant $id dans la variable de session 'bonbon_delete_id'.
+    $_SESSION['bonbon_delete_id'] = $id;
+    $_SESSION['bonbon_name'] = $result[1];
 }else{
     header('Location:index.php');
 }
 
-?>
+
+
+
+
+
+
+
+
+
+
+// TO DO LIST
+
+// - Message d'alerte qui dit "le bonbon zeubi a bien été supprimé" (à mettre sur la page index.php)
+
+// ASTUCE : $_SESSION
