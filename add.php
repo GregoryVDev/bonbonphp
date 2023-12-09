@@ -10,14 +10,14 @@ if ($_POST) {
         // Connexion à la base de données en incluant le fichier connect.php
         require_once("connect.php");
 
-        // Nettoyage des données entrées par l'utilisateur pour éviter les failles de sécurité (strip_tags)
+        // Nettoyage des données entrées par l'utilisateur pour éviter les failles de sécurité (strip_tags) "failles xss"
         $nom = strip_tags($_POST["nom"]);
         $couleur = strip_tags($_POST["couleur"]);
         $box = strip_tags($_POST["box"]);
 
         // Requête SQL pour insérer les données dans la table "bonbon"
         $sql = "INSERT INTO bonbon (nom, couleur, box) VALUES (:nom, :couleur, :box)";
-        $query = $db->prepare($sql); // Préparation de la requête SQL
+        $query = $db->prepare($sql); // Préparation de la requête SQL (injection SQL (protection))
 
         // Liaison des valeurs des paramètres avec les variables
         $query->bindValue(":nom", $nom);

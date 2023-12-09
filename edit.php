@@ -1,0 +1,100 @@
+<?php
+
+if ($_POST) {
+    if(isset($_POST['nom']) && isset($_POST['couleur']) && ($_POST['box']))
+    {
+
+        require_once('connect.php');
+
+        $id = strip_tags($_POST['id']);
+        $nom = strip_tags($_POST['nom']);
+        $couleur = strip_tags($_POST['couleur']);
+        $box = strip_tags($_POST['box']);
+
+        $sql = "UPDATE bonbon SET nom=:nom, couleur=:couleur, box=:box WHERE id=:id";
+        $query = $db->prepare($sql);
+
+        $query->bindValue(":id", $id, PDO::PARAM_INT);
+        $query->bindValue(":nom", $nom);
+        $query->bindValue(":couleur", $couleur);
+        $query->bindValue(":box", $box);
+        
+        $query->execute();
+
+        require_once("close.php");
+
+        header("Location: index.php");
+
+
+    }
+
+};
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+    require_once('connect.php');
+
+    $id = strip_tags($_GET['id']);
+
+    $sql = "SELECT * FROM bonbon WHERE id=:id";
+    $query = $db->prepare($sql);
+
+    $query->bindValue(":id", $id, PDO::PARAM_INT);
+    $query->execute();
+
+    $result = $query->fetch();
+
+    // echo "<pre>";
+    // print_r($result);
+    // echo "</pre>";
+
+    require_once("close.php");
+}else{
+    header("Location: index.php");
+};
+
+
+
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Modifier</title>
+</head>
+
+<body>
+
+    <form method="post">
+        <div>
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" value="<?= $result['nom'] ?>" required>
+
+            <label for="couleur">Couleur</label>
+            <input type="text" name="couleur" value="<?= $result['couleur'] ?>" required>
+
+            <input type="radio" name="box" id="sachet" value="sachet" <?= ($result['box'] === 'sachet') ? 'checked' : '' ?> required>
+            <label for="sachet">Sachet</label>
+
+            <input type="radio" name="box" id="moyenne" value="moyenne" <?= ($result['box'] === 'moyenne') ? 'checked' : '' ?> required>
+            <label for="moyenne">Moyenne boite</label>
+
+            <input type="radio" name="box" id="grosse" value="grosse" <?= ($result['box'] === 'grosse') ? 'checked' : '' ?> required>
+            <label for="grosse">Grosse boite</label>
+
+
+            <input type="hidden" name="id" value="<?= $result['id'] ?>">
+            <input type="submit" value="modifier"></input>
+        </div>
+    </form>
+</body>
+
+</html>

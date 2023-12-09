@@ -66,7 +66,6 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
     <table>
         <thead>
-            <th>ID</th>
             <th>Nom</th>
             <th>Couleur</th>
             <th>Box</th>
@@ -74,7 +73,6 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach($result as $bonbon): ?>
         <tbody>
             <tr>
-                <td><?= $bonbon['id'] ?></td>
                 <td><?= $bonbon['nom'] ?></td>
                 <!-- Une autre façon plus simple d'écrire le php dans le html -->
                 <td><?= $bonbon['couleur'] ?></td>

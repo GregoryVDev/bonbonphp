@@ -43,7 +43,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
 
     // Cette fonction démarre une nouvelle session ou restaure la session existante.
     session_start();
-    // Cela crée une variable de session nommée 'fleuneuk' et lui assigne la valeur 'skeufleuk'.
+    // Une variable $_SESSION se définie comme ça : $_SESSION['NomDeLaSession'] = ValeurDeLaSession;
     $_SESSION['delete_confirm'] = true;
     // Cette ligne stocke l'identifiant $id dans la variable de session 'bonbon_delete_id'.
     $_SESSION['bonbon_delete_id'] = $id;
