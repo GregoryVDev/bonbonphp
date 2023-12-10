@@ -62,6 +62,17 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     <?php unset($_SESSION['delete_confirm']); ?>
     <?php endif; ?>
 
+    <?php if (isset($_SESSION['update_confirm']) && $_SESSION['update_confirm'] === "valid" && isset($_SESSION['nom_apres_modification'])) {
+    ?>
+    <div>
+        <p>Le bonbon <?= $_SESSION['nom_du_bonbon'] ?> a été modifié par <?= $_SESSION['nom_apres_modification'] ?></p>
+    </div>
+    <?php
+    unset($_SESSION['update_confirm'], $_SESSION['nom_apres_modification']);
+} ?>
+
+
+    
 
 
     <table>
@@ -78,7 +89,6 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= $bonbon['couleur'] ?></td>
                 <td><?= $bonbon['box'] ?></td>
                 <td>
-                    <a href="show.php?id=<?= $bonbon["id"] ?>">Voir</a>
                     <a href="edit.php?id=<?= $bonbon["id"] ?>">Modifier</a>
                     <a href="delete.php?id=<?= $bonbon["id"] ?>">Supprimer</a>
                 </td>

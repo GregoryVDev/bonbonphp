@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+
+
 if ($_POST) {
     if(isset($_POST['nom']) && isset($_POST['couleur']) && ($_POST['box']))
     {
@@ -22,6 +26,10 @@ if ($_POST) {
         $query->execute();
 
         require_once("close.php");
+
+        $_SESSION['nom_apres_modification'] = $nom; // où $nom est la nouvelle valeur du nom du bonbon
+        
+
 
         header("Location: index.php");
 
@@ -49,6 +57,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     // echo "</pre>";
 
     require_once("close.php");
+
+    
+    $_SESSION['update_confirm'] = "valid";
+    $_SESSION['nom_du_bonbon'] = $result[1];
+
+
 }else{
     header("Location: index.php");
 };
