@@ -22,14 +22,14 @@ $query->execute();
 // Étape 4 : Récupérer les résultats de la requête SQL
 
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-// Cette ligne de code récupère toutes les lignes de l'objet de résultat et les stocke dans un tableau associatif. Le drapeau PDO::FETCH_ASSOC indique à PHP de récupérer les lignes sous forme de tableaux associatifs, où les clés sont les noms des colonnes et les valeurs sont les valeurs des colonnes.
+// Cette ligne de code récupère toutes les lignes de l'objet de $result et les stocke dans un tableau associatif. Le drapeau PDO::FETCH_ASSOC indique à PHP de récupérer les lignes sous forme de tableaux associatifs, où les clés sont les noms des colonnes et les valeurs sont les valeurs des colonnes.
 
 // Ce code php me donne une variable qui s'appelle $result et qui contient toutes les données de la table selectionné via select * from xxx, sous forme de tableau 
 
 // Le echo "<pre>" permet de présenter le print_r plus proprement et le print_r sert à faire un test des valeurs $
 
 // echo "<pre>";
-// print_r($result[0]);
+// print_r($result);
 // print_r($result[1]['couleur']);
 // print_r($result[2]['box']);
 // echo "</pre>";
@@ -81,7 +81,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
             <th>Couleur</th>
             <th>Box</th>
         </thead>
-        <?php foreach($result as $bonbon): ?>
+        <?php foreach($result as $bonbon):  // Le foreach parcours tous les résultats du $result et créé une ligne différente de $bonbon par ID différent dans ma base de donnée ?>
         <tbody>
             <tr>
                 <td><?= $bonbon['nom'] ?></td>

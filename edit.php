@@ -2,8 +2,6 @@
 
 session_start();
 
-
-
 if ($_POST) {
     if(isset($_POST['nom']) && isset($_POST['couleur']) && ($_POST['box']))
     {
@@ -51,7 +49,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute();
 
     $result = $query->fetch();
-
     // echo "<pre>";
     // print_r($result);
     // echo "</pre>";
@@ -67,10 +64,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header("Location: index.php");
 };
 
-
-
-
-
+// $_SESSION['add_confirm'] = "confirm";
+// $_SESSION['stagiaire_nom'] = $result[1] .' ' . $result[2];
 
 ?>
 

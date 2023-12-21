@@ -28,7 +28,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
 
     if(!$result){
         header('Location:index.php');
-
     }
     // Supprimer un ID qui correspond au lien qui a été cliqué
     $sql = 'DELETE FROM bonbon WHERE id=:id';
