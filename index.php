@@ -7,7 +7,7 @@ require_once("connect.php");
 // Étape 1 : Créer la requête SQL
 
 $sql = "SELECT * FROM bonbon";
-// Cette ligne de code crée une requête SQL qui sélectionne toutes les lignes de la table stagiaire.
+// Cette ligne de code crée une requête SQL qui sélectionne toutes les lignes de la table bonbon.
 
 // Étape 2 : Préparer la requête SQL
 
