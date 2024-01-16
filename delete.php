@@ -1,5 +1,7 @@
 <?php 
 
+
+
 // Vérifier si quelque chose est passé via la méthode GET et si 'id' existe et n'est pas vide
 if(isset($_GET['id']) && !empty($_GET['id'])){
 

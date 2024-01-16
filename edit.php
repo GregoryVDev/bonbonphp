@@ -2,6 +2,13 @@
 
 session_start();
 
+
+
+// Le POST il cherche le formulaire qui est lui-même en POST (<form method="post">) il récupère les infos qui ont été submit via le bouton
+// Le GET il sert à afficher les données 
+
+
+// Vérifie si dans $_POST si il y a bien le nom, la couleur et le box qui existe
 if ($_POST) {
     if(isset($_POST['nom']) && isset($_POST['couleur']) && ($_POST['box']))
     {
@@ -36,6 +43,8 @@ if ($_POST) {
 
 };
 
+// Vérifie si dans $_GET si il y a bien le nom, la couleur et le box qui existe
+
 if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     require_once('connect.php');
@@ -49,9 +58,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute();
 
     $result = $query->fetch();
-    // echo "<pre>";
-    // print_r($result);
-    // echo "</pre>";
+    echo "<pre>";
+    print_r($result);
+    echo "</pre>";
 
     require_once("close.php");
 
